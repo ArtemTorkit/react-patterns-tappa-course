@@ -1,33 +1,30 @@
 import { useRef } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 import useLocalStorage from './hhoooks/useLocalStorage';
+import useFetch from './hhoooks/useFetch';
 import useClipboard from './hhoooks/useClipboard';
-import useFetch from './hhoooks/useFetch'
 import useClickOutside from './hhoooks/useClickOutside';
 
 function App() {
-  const ref = useRef<React.RefObject<HTMLElement>>(null);
-
   const [name, setName] = useLocalStorage<string>('name', 'Artem');
+
   const  { copyToClipboard } = useClipboard();
+
   const {data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/todos/1', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   });
+  console.log('Data:', data, 'Loading:', loading, 'Error:', error);
 
-  useClickOutside(ref, ()=> {console.log('Clicked outside!')});
-
-  console.log('Data:', data);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  useClickOutside(containerRef, ()=> {console.log('Clicked outside!')});
 
   return (
     <>
-    <div style={{ padding: '20px' }} ref={ref}>
+    <div style={{ padding: '20px' }} ref={containerRef}>
       <button onClick={() => copyToClipboard(name)}>Copy Name to Clipboard</button>
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
     </div>

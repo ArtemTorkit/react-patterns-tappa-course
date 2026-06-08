@@ -1,5 +1,17 @@
+type UserData = {
+  name: string
+  email: string
+  role: string
+  permissions: string[]
+}
+
+type InjectedProps = {
+  userData: UserData
+  hasPermission: boolean
+}
+
 export const withUserDataAndPermissions = (WrappedComponent: React.ComponentType, allowedRoles: string[] = ['any'], allowedPermissions: string[] = []) => {
-    return function WithUserDataAndPermissions(props: any) {
+    return function WithUserDataAndPermissions(props: T) {
         // Simulate fetching user data and permissions
         const userData = {
             name: 'John Doe',
