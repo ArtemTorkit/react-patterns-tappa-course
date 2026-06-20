@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import './App.css'
 
-import useLocalStorage from './hhoooks/useLocalStorage';
-import useFetch from './hhoooks/useFetch';
-import useClipboard from './hhoooks/useClipboard';
-import useClickOutside from './hhoooks/useClickOutside';
+import useLocalStorage from './hooks/useLocalStorage';
+import useFetch from './hooks/useFetch';
+import useClipboard from './hooks/useClipboard';
+import useClickOutside from './hooks/useClickOutside';
 
 function App() {
   const [name, setName] = useLocalStorage<string>('name', 'Artem');
