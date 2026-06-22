@@ -1,15 +1,14 @@
-import { useContext } from 'react';
-import { UserContext } from './context/UserContext'
 import './App.css'
+import { useSelectedUserData } from './hooks/useSelectedUserData'
 
 function App() {
-  const useUserData = useContext(UserContext);
-  useUserData();
+  useSelectedUserData();
 
   return (
     <>
     <div className="">
-    LOOK AT THE CONSOLE
+      <h1>Hook Factory Pattern</h1>
+    LOOK AT THE CONSOLE & TRY TO CHANGE CONTEXT PROVIDER PROP
     </div>
     </>
   )

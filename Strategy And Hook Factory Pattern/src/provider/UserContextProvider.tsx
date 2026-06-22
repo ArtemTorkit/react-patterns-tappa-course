@@ -1,10 +1,16 @@
+import type { ReactNode } from 'react';
 import { UserContext } from '../context/UserContext'
 import { createUserDataHook } from '../hook-factory';
 
-const UserContextProvider = ({type, children}) => {
-    const useUserData = createUserDataHook(type);
+interface UserContextProviderProps {
+    type: 'gql' | 'fetch' | 'json'
+    children: ReactNode
+}
 
-    return <UserContext value={useUserData}>{children}</UserContext>;
+const UserContextProvider = ({type, children}: UserContextProviderProps) => {
+    const useUserDataHook = createUserDataHook(type);
+
+    return <UserContext value={useUserDataHook}>{children}</UserContext>;
 }
 
 export default UserContextProvider
